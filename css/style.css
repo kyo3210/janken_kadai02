@@ -2,7 +2,8 @@
 body{
     margin: 0 auto;
     font-family: sans-serif;
-    background-image: url(https://github.com/kyo3210/janken_kadai02/blob/main/images/sibafu.png?raw=true);
+    /* background-image:url("../images/sibafu.png"); */
+    background-image:url("https://github.com/kyo3210/janken_kadai02/blob/main/images/sibafu.png?raw=true");
 }
 
 #back{
