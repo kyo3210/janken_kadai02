@@ -2,7 +2,7 @@
 body{
     margin: 0 auto;
     font-family: sans-serif;
-    background-image: url("/images/sibafu.png");
+    background-image: url(../images/sibafu.png);
 }
 
 #back{
@@ -60,7 +60,7 @@ h1{
 
 #setumei{
     font-family: arial black;
-    font-size: 20px;
+    font-size: 28px;
     background: #000;
     font-weight: bold;
     color: transparent;
@@ -229,13 +229,13 @@ button img{
 #batu{
     color: #f85e53f5;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
 }
 
 #sankaku {
     color: #3d2cf8;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
 
 }
 
