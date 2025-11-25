@@ -56,15 +56,21 @@ function judgeAndAnimate(playerHandIndex){
     void $jankenBall[0].offsetWidth; 
     $jankenBall.css('animation', 'flyToCell 0.5s ease-in forwards'); // 0.5秒のアニメーション
 
+// 2. アニメーション開始 
+    void $jankenBall[0].offsetWidth; 
+    $jankenBall.css('animation', 'flyToCell 0.5s ease-in forwards'); 
+
     // 3. アニメーション終了後に勝敗判定と次のラウンドへ
-    // アニメーション時間に合わせてsetTimeoutを設定
     setTimeout(() => {
+        // ★効果音の再生処理を追加
+
         // アニメーション終了後、ボールを非表示にし、アニメーションもリセット
         $jankenBall.css({
             display: 'none',
             animation: 'none'
         });
-
+                
+    
         // 勝敗判定のロジック（既存コード）
         const result = (playerHandIndex - currentHandIndex + 3) % 3; // 0（引き分け）、1（負け）、2（勝ち)
 
@@ -160,8 +166,8 @@ function disableButtons(disabled) {
 // イベントリスナーの設定
 // ===================================
 
+// / イベントリスナー設定前に、ボール要素と効果音要素を取得する
 const $jankenBall = $("#janken-ball");
-
 
 $(document).ready(function() {
     // 既にグローバル変数として$jankenBallを定義している場合、ここでの再取得は不要です。
@@ -177,7 +183,6 @@ $(document).ready(function() {
 // ===================================
 // スライド
 // ===================================
-
 
 
 $(function() {
