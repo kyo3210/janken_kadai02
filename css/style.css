@@ -16,10 +16,7 @@ body{
 }
 
 #sample{
-    max-width: 1000px;
     display: flex;
-    border-color: #fbfcfb;
-    margin-bottom: 10px;
     font-size: 20px;
     color: #2e3834;  
 }
@@ -36,7 +33,7 @@ body{
 
 
 #messege{
-    font-size: 30px;
+    font-size: 25px;
     font-family: arial;
 	font-weight: bold;
 	color: transparent;
@@ -49,7 +46,7 @@ body{
 
 h1{
     font-family: arial black;
-	font-size: 70px;
+	font-size: 60px;
 	font-weight: bold;
 	color: transparent;
     background: #000;
@@ -61,7 +58,7 @@ h1{
 
 #setumei{
     font-family: arial black;
-    font-size: 28px;
+    font-size: 25px;
     background: #000;
     font-weight: bold;
     color: transparent;
@@ -92,9 +89,6 @@ h1{
     color: #ffb366;
 }
 
-/* .o{
-    color: #f9534d;
-} */
 
 .cell back{
     background-color: #ffffff07;
@@ -240,3 +234,57 @@ button img{
 
 }
 
+
+
+/* スライダーのコンテナ */
+#main-view {
+    position: relative; /* ボタンを配置するために必要 */
+    width: 120px; /* パネル画像の幅に合わせる */
+    height: 120px; /* パネル画像の高さに合わせる */
+    margin: 10px auto;
+    padding: 0 30px;
+    /* overflow: hidden; 画像がはみ出さないように */
+    display: flex;
+}
+
+/* 個々のスライドアイテム */
+.slide-item {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 初期状態ではすべての画像を非表示にする */
+    display: none;
+}
+
+/* 最初の画像だけを初期表示する */
+/* (JavaScriptでも設定可能ですが、CSSで設定すると確実です) */
+#main-view .slide-item:first-child {
+    display: block; 
+    
+}
+
+.slide-item{
+    height: 100px;
+}
+
+/* ボタンのスタイル */
+#prev-button, #next-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 10;
+}
+
+#prev-button {
+    left: 0;
+}
+
+#next-button {
+    right: 0;
+}

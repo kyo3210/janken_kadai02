@@ -15,37 +15,6 @@ let currentHandIndex = -1; //今、マス目に表示されているコンピュ
 let remainingCells  = [];  //まだじゃんけんが行われていないマス目（セル）のIDリスト（配列）でメモ
 let gameEnded = false;  //ゲーム終了フラグゲーム開始前なのでfalse
 
-//--------------------------
-// ★勝敗判定
-// もし、ゲームが終了している OR マス目が決まっていない OR コンピューターの手が決まっていないなら
-//! （否定）は「〜ではない」
-// function judgeAndAnimate(playerHandIndex){
-//     if(gameEnded || !$currentCell || currentHandIndex === -1) return; // returnwですぐに処理を中断
-
-//     const result = (playerHandIndex - currentHandIndex +3)% 3; //モジュロ演算で「3で割った余り」0（引き分け）、1（負け）、2（勝ち)にする
-
-//     disableButtons(true); //ボタンを非活性にしておく
-
-//     //勝敗マークの削除
-//     $currentCell.find("img.janken-hand-image").remove();
-//     $currentCell.find(".result-mark").remove();
-//     // 勝ったとき
-//     if(result === 2){
-//      $currentCell.addClass("win").removeClass("lose draw"); // .addClass(), .removeClass()
-//     $currentCell.append('<div class="result-mark win-mark">〇</div>');
-//     // 負けたとき
-//     }else if (result === 1){
-//     $currentCell.addClass("lose").removeClass("win draw"); // .addClass(), .removeClass()
-//     $currentCell.append('<div class="result-mark lose-mark">×</div>');
-//     // あいこのとき
-//     }else {
-//     $currentCell.addClass("draw").removeClass("win lose"); // .addClass(), .removeClass()
-//     $currentCell.append('<div class="result-mark draw-mark">△</div>');
-//     }
-
-//     // 2秒たったら次に進む
-//     setTimeout(nextRound,2000);
-// }
 
 
 function judgeAndAnimate(playerHandIndex){
@@ -188,7 +157,7 @@ function disableButtons(disabled) {
 }
 
 // ===================================
-// 4. イベントリスナーの設定
+// イベントリスナーの設定
 // ===================================
 
 const $jankenBall = $("#janken-ball");
@@ -203,4 +172,56 @@ $(document).ready(function() {
     $("#button_p").on("click", () => judgeAndAnimate(2));
 
     initializeGame(); // ゲームの初期化と最初のラウンド開始
+});
+
+// ===================================
+// スライド
+// ===================================
+
+
+
+$(function() {
+    // すべてのスライドアイテムを取得
+    const $slideItems = $('#main-view .slide-item');
+    // 現在表示している画像のインデックス (0から始まる)
+    let currentIndex = 0;
+    // スライドの総数
+    const totalSlides = $slideItems.length;
+
+    /**
+     * 指定されたインデックスの画像を表示する関数
+     * @param {number} index - 表示したい画像のインデックス
+     */
+    function showSlide(index) {
+        // 現在表示されている画像を隠す (display: none)
+        $slideItems.eq(currentIndex).hide();
+        
+        // インデックスを更新
+        currentIndex = index;
+        
+        // 新しい画像をフェードインで表示する
+        $slideItems.eq(currentIndex).fadeIn(300); // 300msで切り替え
+    }
+
+    // 次へボタンのクリックイベント
+    $('#next-button').on('click', function() {
+        // 次のインデックスを計算
+        let nextIndex = currentIndex + 1;
+        // 最後の画像だったら最初に戻る (ループ再生)
+        if (nextIndex >= totalSlides) {
+            nextIndex = 0;
+        }
+        showSlide(nextIndex);
+    });
+
+    // 戻るボタンのクリックイベント
+    $('#prev-button').on('click', function() {
+        // 前のインデックスを計算
+        let prevIndex = currentIndex - 1;
+        // 最初の画像だったら最後に進む (ループ再生)
+        if (prevIndex < 0) {
+            prevIndex = totalSlides - 1;
+        }
+        showSlide(prevIndex);
+    });
 });
